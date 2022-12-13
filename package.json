@@ -1,5 +1,5 @@
 {
-  "name": "blocks-runtime",
+  "name": "@githubnext/blocks-runtime",
   "version": "1.0.0",
   "license": "MIT",
   "engines": {
