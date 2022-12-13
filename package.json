@@ -9,6 +9,9 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "description": "runtime support for Blocks",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup --dts",
     "prepublish": "yarn build"
