@@ -136,10 +136,18 @@ const makeReactSetBlockProps = () => {
       });
     };
     root.render(
-      React.createElement(Block, {
-        ...props,
-        BlockComponent: WrappedBlockComponent,
-      })
+      React.createElement(
+        PrimerReact.ThemeProvider,
+        {},
+        React.createElement(
+          PrimerReact.BaseStyles,
+          { style: { width: "100%", height: "100%" } },
+          React.createElement(Block, {
+            ...props,
+            BlockComponent: WrappedBlockComponent,
+          })
+        )
+      )
     );
   };
 };
