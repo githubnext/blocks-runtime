@@ -39,12 +39,31 @@ const init = (
       setBlockProps = await loadBundle(bundle, props.block, loadDevServerBlock);
     }
 
-    if (bundle === null) {
-      // TODO(jaked)
-      // render not found
-    } else if (!setBlockProps) {
-      // TODO(jaked)
-      // render loading
+    const root = document.getElementById("root")!;
+
+    if (
+      root.children.length === 1 &&
+      (root.children[0].id === "__loading__" ||
+        root.children[0].id === "__not_found__")
+    ) {
+      root.removeChild(root.children[0]);
+    }
+
+    if (bundle === null || !setBlockProps) {
+      const div = document.createElement("div");
+      div.id = bundle == null ? "__not_found__" : "__loading__";
+      div.style.width = "100%";
+      div.style.height = "100%";
+      div.style.display = "flex";
+      div.style.alignItems = "center";
+      div.style.justifyContent = "center";
+      div.style.color = "#ddd";
+      div.style.fontStyle = "italic";
+      const text = document.createTextNode(
+        bundle === null ? "Block not found" : "Loading..."
+      );
+      div.appendChild(text);
+      root.appendChild(div);
     } else {
       const wrappedSetBlockProps = (
         props: FileBlockProps | FolderBlockProps

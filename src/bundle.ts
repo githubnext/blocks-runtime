@@ -13,7 +13,6 @@ import {
 } from "@githubnext/blocks";
 
 const elements: HTMLElement[] = [];
-const root = ReactDOMClient.createRoot(document.getElementById("root")!);
 
 const findBlockBundleName = (bundle: { name: string; content: string }[]) => {
   let blockBundleName;
@@ -87,6 +86,8 @@ const loadBlockBundle = (
   }
 };
 
+let root: ReactDOMClient.Root;
+
 const makeReactSetBlockProps = () => {
   // @ts-ignore
   const Block = window.BlockBundle({
@@ -135,6 +136,11 @@ const makeReactSetBlockProps = () => {
         context,
       });
     };
+
+    if (!root) {
+      root = ReactDOMClient.createRoot(document.getElementById("root")!);
+    }
+
     root.render(
       React.createElement(
         PrimerReact.ThemeProvider,
