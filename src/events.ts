@@ -26,7 +26,7 @@ const init = (
     //   `{ props: ... }` means render the block with new props
     // `setProps` with `bundle` is called once, then `setProps` with `props` one or more times
 
-    if (data.props.bundle) {
+    if ("bundle" in data.props) {
       // clear old bundle state
       setBlockProps = undefined;
       unloadBundle();
@@ -51,7 +51,7 @@ const init = (
 
     if (bundle === null || !setBlockProps) {
       const div = document.createElement("div");
-      div.id = bundle == null ? "__not_found__" : "__loading__";
+      div.id = bundle === null ? "__not_found__" : "__loading__";
       div.style.width = "100%";
       div.style.height = "100%";
       div.style.display = "flex";

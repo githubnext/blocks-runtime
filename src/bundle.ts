@@ -18,7 +18,7 @@ const findBlockBundleName = (bundle: { name: string; content: string }[]) => {
   let blockBundleName;
   bundle.forEach((asset) => {
     if (asset.name.endsWith(".js")) {
-      blockBundleName = asset.content.match(/^"use strict";var ([^=]+)=/)?.[1];
+      blockBundleName = asset.content.match(/var ([^=]+)=/)?.[1];
     }
   });
   if (!blockBundleName) throw new Error("couldn't find block bundle name");
